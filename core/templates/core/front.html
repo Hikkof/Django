@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %} Welcome! {% endblock %}
+
+{% block content %}
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-12 text-2xl text-center">Newest homebrews</h2>
+
+  <div class="grid grid-cols-3 gap-3">
+    {% for homebrew in homebrews %}
+    <div>  <!-- nie wyswietla sie-->
+      <a href="{% url 'homebrew:detail' homebrew.id %}">
+        {% if homebrew.image.url is not Null %}
+        <div>
+          <img src="{{homebrew.image.url}}" width="500px" class="rounded-t-xl">
+        </div>
+        {% endif %}
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> {{homebrew.name}} </h2>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

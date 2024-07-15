@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block title %} Homebrew {% endblock %}
+
+{% block content %}
+<div class="mg-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-12 text-2xl text-center"> What kind of idea do you have? </h2>
+
+  <div class="grid grid-cols-3 grid-rows-5 gap-3">
+    <div>
+      <a href="{% url 'homebrew:new_weapon' %}">
+        <div>
+          <img src="{% static 'homebrew/new_weapon_placeholder.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Weapon </h2>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="{% url 'homebrew:new_armor' %}">
+        <div>
+          <img src="{% static 'homebrew/armor.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Armor </h2>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="{% url 'homebrew:new_item' %}">
+        <div>
+          <img src="{% static 'homebrew/new_item_placeholder.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Item </h2>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="{% url 'homebrew:new_career' %}">
+        <div>
+          <img src="{% static 'homebrew/new_career_placeholder.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Career </h2>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="{% url 'homebrew:new_homebrew' %}">
+        <div>
+          <img src="{% static 'homebrew/new_rule_placeholder.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Rule </h2>
+        </div>
+      </a>
+    </div>
+
+    <div>
+      <a href="{% url 'homebrew:new_homebrew' %}">
+        <div>
+          <img src="{% static 'homebrew/placeholder_placeholder.png' %}" class="rounded-t-xl">
+        </div>
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> Scenario </h2>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="mg-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-12 text-2xl text-center"> Need inspiration? </h2>
+
+  <!--3 or 6 newest items?-->
+  <div class="grid grid-cols-3 gap-3">
+    {% for homebrew in homebrews %}
+    <div>
+      <a href="#">
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> {{homebrew.name}} </h2>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

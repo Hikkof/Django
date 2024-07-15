@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %} Career {% endblock %}
+
+{% block content %}
+<h1 class="mb-6 text-3xl"> {{title}} </h1>
+
+<form method="post" action="." enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="py-4 space-y-3">
+    {{form.name}}
+    <!-- add image -->
+    <a class="px-6 text-xl text-lg text-gray-600"> Main Profile </a>
+    <div class="grid grid-cols-8 justify-items-center">
+      {{form.weapon_skill}}
+      {{form.balistic_skill}}
+      {{form.strength}}
+      {{form.toughness}}
+      {{form.agility}}
+      {{form.intelligence}}
+      {{form.will_power}}
+      {{form.fellowship}}
+    </div>
+    <a class="px-6 text-xl text-lg text-gray-600"> Secondary Profile </a>
+    <div class=" grid grid-cols-8 justify-items-center">
+      {{form.attacks}}
+      {{form.wounds}}
+      {{form.strength_bonus}}
+      {{form.toughness_bonus}}
+      {{form.movement}}
+      {{form.magic}}
+      {{form.insanity_points}}
+      {{form.fate_points}}
+    </div>
+    {{form.skills}}
+    {{form.talents}}
+    {{form.trappings}}
+    {{form.career_entries}}
+    {{form.career_exits}}
+    {{form.description}}
+    {{form.image}}
+  </div>
+
+  {% if form.errors or form.non_field_errors %}
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">
+    {% for field in forms %}
+      {{field.errors}}
+    {% endfor %}
+      {{form.non_field_errors}}
+    </div>
+  {% endif %}
+
+  <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+</form>
+{% endblock %}

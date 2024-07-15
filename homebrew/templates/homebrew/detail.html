@@ -1,0 +1,155 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %} Contact {% endblock %}
+
+{% block content %}
+<!--
+cascading homebrew->item/rule/story->
+-->
+<h1>
+<div class="grid grid-cols-5 gap-6">
+  <div class="col-span-3">
+    {% if homebrew.image.url is not Null %}
+    <img src="{{homebrew.image.url}}" class="rouded-xl">
+    {% endif %}
+  </div>
+</div>
+<div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+  <h1 class="mb-6 text-3xl">{{homebrew.name}}</h1>
+  <p class="text-gray-500"><strong>Author: </strong>{{homebrew.created_by.username}}</p>
+
+  {% if homebrew.value %}
+    {% if homebrew.primary_stat %}
+      <div class="grid grid-cols-4">
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Primary Stat: </strong><br>{{homebrew.primary_stat}}
+        </p>
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Multiplayer: </strong><br>{{homebrew.multiplayer}}
+        </p>
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Modifier: </strong><br>{{homebrew.modifier}}
+        </p>
+      </div>
+    {% endif %}
+
+    {% if homebrew.armor_points %}
+      <div class="grid grid-cols-4">
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Armor Points: </strong><br>{{homebrew.armor_points}}
+        </p>
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Location Covered: </strong><br>{{homebrew.location_covered}}
+        </p>
+      </div>
+    {% endif %}
+    <div class="grid grid-cols-4">
+      <p class="text-gray-700">
+        <strong class="text-gray-500">Value: </strong><br>{{homebrew.value}}
+      </p>
+      <p class="text-gray-700">
+        <strong class="text-gray-500">Coinage: </strong><br>{{homebrew.coinage}}
+      </p>
+    </div>
+  {% endif %}
+
+  {% if homebrew.career_exits %}
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Main Profile: </strong>
+    </p>
+    <div class="grid grid-cols-8">
+      <p class="text-gray-700">
+        <strong>WS</strong><br>{{homebrew.weapon_skill}}
+      </p>
+      <p class="text-gray-700">
+        <strong>BS</strong><br>{{homebrew.balistic_skill}}
+      </p>
+      <p class="text-gray-700">
+        <strong>S</strong><br>{{homebrew.strength}}
+      </p>
+      <p class="text-gray-700">
+        <strong>T</strong><br>{{homebrew.toughness}}
+      </p>
+      <p class="text-gray-700">
+        <strong>Ag</strong><br>{{homebrew.agility}}
+      </p>
+      <p class="text-gray-700">
+        <strong>Int</strong><br>{{homebrew.intelligence}}
+      </p>
+      <p class="text-gray-700">
+        <strong>WP</strong><br>{{homebrew.will_power}}
+      </p>
+      <p class="text-gray-700">
+        <strong>Fel</strong><br>{{homebrew.fellowship}}
+      </p>
+    </div>
+
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Secondary Profile: </strong>
+    </p>
+    <div class="grid grid-cols-8">
+      <p class="text-gray-700">
+        <strong>A</strong><br>{{homebrew.attacks}}
+      </p>
+      <p class="text-gray-700">
+        <strong>W</strong><br>{{homebrew.wounds}}
+      </p>
+      <p class="text-gray-700">
+        <strong>SB</strong><br>{{homebrew.strength_bonus}}
+      </p>
+      <p class="text-gray-700">
+        <strong>TB</strong><br>{{homebrew.toughness_bonus}}
+      </p>
+      <p class="text-gray-700">
+        <strong>M</strong><br>{{homebrew.movement}}
+      </p>
+      <p class="text-gray-700">
+        <strong>Mag</strong><br>{{homebrew.magic}}
+      </p>
+      <p class="text-gray-700">
+        <strong>IP</strong><br>{{homebrew.insanity_points}}
+      </p>
+      <p class="text-gray-700">
+        <strong>FP</strong><br>{{homebrew.fate_points}}
+      </p>
+    </div>
+
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Skills: </strong><br>{{homebrew.skills}}
+    </p>
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Talents: </strong><br>{{homebrew.talents}}
+    </p>
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Trappings: </strong><br>{{homebrew.trappings}}
+    </p>
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Career Entries: </strong><br>{{homebrew.career_entries}}
+    </p>
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Career Exits: </strong><br>{{homebrew.career_exits}}
+    </p>
+  {% endif %}
+
+  {% if homebrew.description %}
+    <p class="text-gray-700">
+      <strong class="text-gray-500">Description: </strong><br>{{homebrew.description}}
+    </p>
+  {% endif %}
+
+  {% if request.user == homebrew.created_by %}
+    <div class="mt-6 p-6 bg-white rounded-xl">
+      <p>This is Your homebrew</p>
+
+      <a href="{% url 'homebrew:edit' homebrew.id %}" class="inline-block mt-6 px-6 py3 text-lg font-semibold bg-teal-500 text-white rounded-xl">
+        Edit
+      </a>
+      <a href="{% url 'homebrew:delete' homebrew.id %}" class="inline-block mt-6 px-6 py3 text-lg font-semibold bg-red-500 text-white rounded-xl">
+        Delete
+      </a>
+    </div>
+  {% endif %}
+  </div>
+</h1>
+{% endblock %}

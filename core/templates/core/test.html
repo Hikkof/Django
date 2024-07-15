@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{% block title %} {% endblock %} | Heresy</title>
+</head>
+<body>
+  <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+    <a href="/" class="text-xl font-semibold"> Heresy </a>
+    <div class="space-x-2 grid grid-cols-5 justify-items-center" >
+
+<div class="relative inline-block text-left">
+  <div>
+    <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+      Options
+      <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+
+  <!--
+    Dropdown menu, show/hide based on menu state.
+
+    Entering: "transition ease-out duration-100"
+      From: "transform opacity-0 scale-95"
+      To: "transform opacity-100 scale-100"
+    Leaving: "transition ease-in duration-75"
+      From: "transform opacity-100 scale-100"
+      To: "transform opacity-0 scale-95"
+  -->
+  <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
+      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
+      <form method="POST" action="#" role="none">
+        <button type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Sign out</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+      <a href="{% url 'homebrew:browse' %}" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> Browse </a>
+      <!--<a href="{% url 'homebrew:new_weapon' %}" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> New item </a>-->
+      <a href="#" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> Dashboard </a>
+      {% if request.user.is_authenticated %}
+          <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"> Inbox </a>
+          <form action="{% url 'core:logout' %}" method="post">
+            {% csrf_token %}
+            <button class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700" type="submit">Log Out</button>
+          </form>
+      {% else %}
+          <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700"> Sign Up </a>
+          <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700"> Log In </a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="px-6 py-6">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <footer class="py-6 py-6 flex justify-between bg-gray-800">
+    <div class="w-2/3 pl-10">
+      <h3 class="mb-5 font-semibold text-gray-400"> About </h3>
+
+      <p class="text-lg text-grey-500">
+        I used to be an adventurer like you,
+        Then I took an arrow to the knee
+      </p>
+    </div>
+    <div class="w1/3 pr-20">
+      <h3 class="mb-5 font-semibold text-gray-400"> Menu </h3>
+
+      <ul class="space-y-2">
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> About </a> </li>
+        <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700"> Contact </a> </li>
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> Privacy policy </a> </li>
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> Terms of use </a> </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

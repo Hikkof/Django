@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %} Weapon {% endblock %}
+
+{% block content %}
+<h1 class="mb-6 text-3xl"> {{title}} </h1>
+
+<form method="post" action="." enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="py-4 space-y-3">
+    {{form.name}}
+    <!-- add image -->
+    <a class="px-6 text-xl text-lg text-gray-600"> Weapon statistics </a>
+    <div class="grid grid-cols-3 justify-items-center">
+      {{form.primary_stat}}
+      {{form.multiplayer}}
+      {{form.modifier}}
+    </div>
+    <a class="px-6 text-xl text-lg text-gray-600"> Weapon value </a>
+    <div class=" grid grid-cols-2 justify-items-center">
+      {{form.value}}
+      {{form.coinage}}
+    </div>
+    {{form.description}}
+    {{form.image}}
+  </div>
+
+  {% if form.errors or form.non_field_errors %}
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">
+    {% for field in forms %}
+      {{field.errors}}
+    {% endfor %}
+      {{form.non_field_errors}}
+    </div>
+  {% endif %}
+
+  <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+</form>
+{% endblock %}
