@@ -1,1 +1,3 @@
 # Django
+stabilna wersja
+niedokonczona
