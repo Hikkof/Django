@@ -1,27 +1,27 @@
 {% extends 'core/base.html' %}
 
 
-{% block title %} Contact {% endblock %}
+{% block title %} Welcome! {% endblock %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl"> {{title}} </h1>
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-12 text-2xl text-center">Newest homebrews</h2>
 
-<form method="post" action="." enctype="multipart/form-data">
-  {% csrf_token %}
-
-  <div class="space-y-4">
-    {{form.as_p}}
-  </div>
-
-  {% if form.errors or form.non_field_errors %}
-    <div class="mb-3 p-6 bg-red-100 rounded-xl">
-    {% for field in forms %}
-      {{field.errors}}
-    {% endfor %}
-      {{form.non_field_errors}}
+  <div class="grid grid-cols-3 gap-3">
+    {% for homebrew in homebrews %}
+    <div>  <!-- nie wyswietla sie-->
+      <a href="{% url 'homebrew:detail' homebrew.id %}">
+        {% if homebrew.image.url is not Null %}
+        <div>
+          <img src="{{homebrew.image.url}}" width="500px" class="rounded-t-xl">
+        </div>
+        {% endif %}
+        <div class="p-6 bg-white rounded-b-xl">
+          <h2 class="text-2xl"> {{homebrew.name}} </h2>
+        </div>
+      </a>
     </div>
-  {% endif %}
-
-  <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
-</form>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
