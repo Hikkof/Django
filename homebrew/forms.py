@@ -5,7 +5,7 @@ from .models import Homebrew, Item, Weapon, Armor, Career
 INPUT_CLASSES = 'w-full px-6 py-4 rounded-xl border'
 
 
-class NewHomebrewForm(forms.ModelForm):  # can be used for modification base
+class NewHomebrewForm(forms.ModelForm):
     class Meta:
         abstract = True
         model = Homebrew

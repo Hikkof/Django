@@ -9,14 +9,14 @@
 
   <div class="grid grid-cols-3 gap-3">
     {% for homebrew in homebrews %}
-    <div>  <!-- nie wyswietla sie-->
+    <div>
       <a href="{% url 'homebrew:detail' homebrew.id %}">
         {% if homebrew.image.url is not Null %}
         <div>
           <img src="{{homebrew.image.url}}" width="500px" class="rounded-t-xl">
         </div>
         {% endif %}
-        <div class="p-6 bg-white rounded-b-xl">
+        <div class="p-6 text-center bg-white rounded-b-xl">
           <h2 class="text-2xl"> {{homebrew.name}} </h2>
         </div>
       </a>

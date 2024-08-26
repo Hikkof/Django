@@ -11,18 +11,18 @@
 
   <div class="py-4 space-y-3">
     {{form.name}}
-    <a class="px-6 text-xl text-lg text-gray-600"> Armor statistics </a>
+    <a class="px-6 text-xl text-lg"> Armor statistics </a>
     <div class="grid grid-cols-2 justify-items-center">
       {{form.armor_points}}
       {{form.location_covered}}
     </div>
-    <a class="px-6 text-xl text-lg text-gray-600"> Armor value </a>
+    <a class="px-6 text-xl text-lg"> Armor value </a>
     <div class=" grid grid-cols-2 justify-items-center">
       {{form.value}}
       {{form.coinage}}
     </div>
     {{form.description}}
-    {{form.image}}   <!-- nie w ten sposob -->
+    {{form.image}}
   </div>
 
   {% if form.errors or form.non_field_errors %}

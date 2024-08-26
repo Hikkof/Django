@@ -62,7 +62,9 @@ def detail(request, pk):
 
 
 def select(request):
-    return render(request, 'homebrew/select.html')
+    homebrews = Homebrew.objects.all()[::-1]
+
+    return render(request, 'homebrew/select.html', {'homebrews' : homebrews[0:3]})
 
 
 @login_required
