@@ -7,13 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>{% block title %} {% endblock %} | Heresy</title>
 </head>
-<body>
+<body class="bg-gray-600">
   <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
     <a href="/" class="text-xl font-semibold"> Heresy </a>
     <div class="space-x-2 grid grid-cols-5 justify-items-center">
       <a href="{% url 'homebrew:browse' %}" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> Browse
-
-      <!--jebac zrob strone przejsciowa?-->
       <a href="{% url 'homebrew:select' %}" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> New item </a>
       <a href="#" class="px-6 py-3 text-lg font-semibold hover:text-gray-500"> Dashboard </a>
       {% if request.user.is_authenticated %}
@@ -38,8 +36,8 @@
       <h3 class="mb-5 font-semibold text-gray-400"> About </h3>
 
       <p class="text-lg text-grey-500">
-        This webpage was create as a learning project<br>
-        It is not desined for any comercial gains
+        This webpage was create as a learning project.<br>
+        It is not desined for any comercial use.
       </p>
     </div>
     <div class="w1/3 pr-20">
@@ -47,8 +45,8 @@
 
       <ul class="space-y-2">
         <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700"> Contact </a> </li>
-        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> Privacy policy </a> </li>
-        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> Terms of use </a> </li>
+        <!--<li><a href="#" class="text-lg text-teal-500 hover:text-teal-700"> Privacy policy </a> </li>-->
+        <li><a href="{% url 'core:terms_of_use' %}" class="text-lg text-teal-500 hover:text-teal-700"> Terms of use </a> </li>
       </ul>
     </div>
   </footer>
