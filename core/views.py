@@ -23,3 +23,7 @@ def signup(request):
 
 def contact(request):
     return render(request, 'core/contact.html')
+
+
+def terms_of_use(request):
+    return render(request, 'core/terms_of_use.html')
